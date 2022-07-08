@@ -907,11 +907,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ID139\\OneDrive\\Desktop\\coding_dojo\\c#\\.net_core\\Belt\\Belt.csproj",
+      "projectUniqueName": "C:\\Users\\ID139\\OneDrive\\Desktop\\Belt\\Belt.csproj",
       "projectName": "Belt",
-      "projectPath": "C:\\Users\\ID139\\OneDrive\\Desktop\\coding_dojo\\c#\\.net_core\\Belt\\Belt.csproj",
+      "projectPath": "C:\\Users\\ID139\\OneDrive\\Desktop\\Belt\\Belt.csproj",
       "packagesPath": "C:\\Users\\ID139\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ID139\\OneDrive\\Desktop\\coding_dojo\\c#\\.net_core\\Belt\\obj\\",
+      "outputPath": "C:\\Users\\ID139\\OneDrive\\Desktop\\Belt\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ID139\\AppData\\Roaming\\NuGet\\NuGet.Config"
