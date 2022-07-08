@@ -1,0 +1,47 @@
+@model Meetup
+@{bool alreadyJoined = Model.Attendees.Any(rsvp => rsvp.UserId == ViewBag.userId);}
+<div class="container">
+    <h3 class="Display-2">@Model.Title</h3>
+
+
+    <div class="ml-4">
+        <h3 class="Display-3">Event Coordinator: @Model.Creator.Name</h3>
+        <div class="mb-3">
+            <h3 class="Display-3">Description:</h3>
+            <h4 class="lead ml-2"> @Model.Description</h4>
+        </div>
+        <h3 class="Display-3">Participants:</h3>
+        <div>
+            @foreach (var rsvp in Model.Attendees)
+            {
+                <p class="lead ml-2">@rsvp.User.Name</p>
+            }
+        </div>
+    </div>
+
+    @if(Model.CreatorId == ViewBag.UserId)
+        {
+            <form asp-controller="Home" asp-action="DeleteMeetup" method="POST">
+            <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+            <input type="hidden" name="MeetupId" Value = "@Model.MeetupId">
+            <td><button type="submit class="btn btn-link">Delete</button></td>
+        </form>
+        }  
+        else if(!alreadyJoined)                        
+        {
+            <form asp-controller="Home" asp-action="SubmitRSVP" method="POST">
+            <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+            <input type="hidden" name="MeetupId" Value = "@Model.MeetupId">
+            <td><button type="submit class="btn btn-link">RSVP</button></td>
+            </form>
+        }
+        else{
+            <form asp-controller="Home" asp-action="SubmitUnRSVP" method="POST">
+            <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+            <input type="hidden" name="MeetupId" Value = "@Model.MeetupId">
+            <td><button type="submit class="btn btn-link">Un-RSVP</button></td>
+            </form>
+        }
+
+    
+</div>

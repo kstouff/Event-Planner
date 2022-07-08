@@ -1,0 +1,58 @@
+<div class="container">
+        <h3 class="Display-3">Welcome to the Coding Dojo Meetups</h3>
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Meet Up</th>
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Event Coordinator</th>
+                        <th scope="col">No. of Participants</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (Meetup meetup in ViewBag.allMeetups)
+                        {
+                            bool alreadyJoined = meetup.Attendees.Any(rsvp => rsvp.UserId == ViewBag.userId);
+                        <tr>
+                            <th scope="row" class="lead"><a href="/meetups/@meetup.MeetupId">@meetup.Title</a></th>
+                            <td class="lead">@meetup.Date</td>
+                            <td class="lead">@meetup.DurationLength @meetup.DurationDenom</td>
+                            <td class="lead">@meetup.Creator.Name</td>
+                            <td class="lead">@meetup.Attendees.Count</td>
+                            @if(meetup.CreatorId == ViewBag.UserId)
+                            {
+                                <form asp-controller="Home" asp-action="DeleteMeetup" method="POST">
+                                <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+                                <input type="hidden" name="MeetupId" Value = "@meetup.MeetupId">
+                                <td><button type="submit class="btn btn-link">Delete</button></td>
+                            </form>
+                            }  
+                            else if(!alreadyJoined)                        
+                            {
+                                <form asp-controller="Home" asp-action="SubmitRSVP" method="POST">
+                                <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+                                <input type="hidden" name="MeetupId" Value = "@meetup.MeetupId">
+                                <td><button type="submit class="btn btn-link">RSVP</button></td>
+                                </form>
+                            }
+                            else{
+                                <form asp-controller="Home" asp-action="SubmitUnRSVP" method="POST">
+                                <input type="hidden" name="UserId" Value = "@ViewBag.UserId">
+                                <input type="hidden" name="MeetupId" Value = "@meetup.MeetupId">
+                                <td><button type="submit class="btn btn-link">Un-RSVP</button></td>
+                                </form>
+                            }
+
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        
+        
+        <div class="d-flex justify-content-end">
+            <a href="/addMeetup" class="btn btn-primary" role="button">Create New Meetup</a>
+        </div>
+    </div>

@@ -1,0 +1,72 @@
+@model Meetup
+
+<div class="container">
+        <h2 class="Display-2">Create a Meet Up</h2>
+        <form asp-controller="Home" asp-action="SubmitMeetup" method="POST">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <div class="row form-group">
+                        <label asp-for="Title" class="col-sm"></label>
+                        <div>
+                            <div>
+                                <input asp-for="Title" class="col-sm">
+                            </div>
+                            <div>
+                                <span 
+                                asp-validation-for="Title" 
+                                class="text-danger font-weight-bold">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label asp-for="Date" class="col-sm"></label>
+                        <div>
+                            <div>
+                                <input asp-for="Date" class="col-sm">
+                            </div>
+                            <div>
+                                <span 
+                                asp-validation-for="Date" 
+                                class="text-danger font-weight-bold">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <label class="col-sm">Duration:</label>
+
+                        <input asp-for="DurationLength" class="col-sm">
+                        <select asp-for="DurationDenom">
+                            <option value="Minutes">Minutes</option>
+                            <option value="Hours">Hours</option>
+                            <option value="Days">Days</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="row form-group">
+                        <label asp-for="Description" class="col-sm"></label>
+                        <div>
+                            <div>
+                                <textarea asp-for="Description" cols="30" rows="6"></textarea>
+                            </div>
+                            <div>
+                                <span 
+                                asp-validation-for="Description" 
+                                class="text-danger font-weight-bold">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="CreatorId" value="@ViewBag.userId">
+
+                </div>        
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+
+
+    </div>
