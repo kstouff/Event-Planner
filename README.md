@@ -1,3 +1,1 @@
-"# Event-Planner" 
-"# MeetUp" 
 "# MeetUp" 
